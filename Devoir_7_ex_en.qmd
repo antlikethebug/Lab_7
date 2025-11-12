@@ -1,0 +1,63 @@
+---
+title: Bio4158/Bio5158 - Report 7
+subtitle: Exercise
+author: "Group XX - Name_1, Name_2, Name_3"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+In memory of Antoine Morin, Professor of freshwater ecology, University of Ottawa (1989-2018), who died too young.
+
+# Background
+
+Multiple variables are affecting the abundance of black flies larvae in rivers. Current speed impact the larvae ability to catch food suspended in the water column because they are passive filter feeders. When the current is too slow, larvae are not able to catch enough food; if the current is too strong, larvae are displaced by the current amd are not able to catch food. Of course , teh quantity and quality of food available is also extremely important. Because black flies larvae are living in a linear environment (water always flows downstream), female flies fly upstream to lay their eggs in a lake, and teh eggs and larvae are then dispersed by the current. Other invertebrates, like the caddis fly from the Hydropsichidae family, live in similar streams as black flies and their larvae compete for similar habitats.
+
+For his PhD thesis, Antoine Morin wanted to study how all those variables affected the abundance of black flies larvae, especially given that previous studies only looked at one or two variables at a time. Black flies biomass per metre square of substrate was use as a measure of their abundance.
+
+# The data
+
+The file `simuliidae.csv` contains non-published data from the study performed by Antoine Morin during his PhD sampling stream from Eastern Townships and Laurentian in Quebec. 
+At each site, he  sampled 12 rocks on which he measured several variables.
+The file `simuliidae.csv` contains the average observation per site for all the following variables:
+
+| Variable | Description |
+|----|------------------------|
+| `distance` | distance (m) from the closest lak upstream |
+| `cs` | chlorophyll content of suspended particules in water. this is an index of food quality (higher = better food)|
+| `v` | current speed (cm/s) |
+| `z` | water depth (cm) |
+| `a` | mean size of rock sampled (cm^2^) |
+| `bhydae` | Hydropsichidae biomass ($mg_{DM}/m^2$) |
+| `bsim` | biomass of black fly larvae ($mg_{DM}/m^2$) |
+
+
+# The task
+
+Analyze the data to determine the importance and relative effect of those different variables on the abundance of black fly larvae.
+
+a. Your biological prediction (one for each variable) _(2 points)_
+b. Corresponding null hypotheses _(2 point)_
+c. A plot visualizing the data adequately + a description of the most important aspects of the plot _(2 points)_
+d. The statistical model(s) + a justification for model choice  (do not include interactions yet) _(2 point)_
+e. Statement of the model assumptions and evidence that they were evaluated. If needed fit alternative model or use a different approach needed if assumptions are not met _(3 points)_
+f. Evaluate the interactions _(2 point)_
+g. The results and statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). _(2 points)_
+h. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(2 points)_
+i. The biological conclusion (an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter), include a conclusion in the regard to the starting hypothesis _(2 points)_.
+
+
+-------------------------------------
+
+# Report
+
+_3 points_ for proper formatting of the report
+
+Write your report here.
+
+Use code chunks for your R code and use ## for titles.
+
