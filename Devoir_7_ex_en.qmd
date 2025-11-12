@@ -1,7 +1,7 @@
 ---
 title: Bio4158/Bio5158 - Report 7
 subtitle: Exercise
-author: "Group XX - Name_1, Name_2, Name_3"
+author: "Group 25 - Calvin Elisen, An-Tam Le"
 date: today
 format:
   html:
@@ -60,4 +60,39 @@ _3 points_ for proper formatting of the report
 Write your report here.
 
 Use code chunks for your R code and use ## for titles.
+```{r, include=FALSE}
+setwd("C:/Users/antam/Downloads")
+sim <- read.csv("simuliidae.csv")
+library(car)
+library(ggplot2)
+library(lmtest)
+library(simpleboot)
+library(boot)
+library(MuMIn)
+```
+
+## Biological predictions for each variable
+
+
+
+## Corresponding null hypotheses
+
+
+
+## A plot visualizing the data adequately + a description of the most important aspects of the plot
+
+```{r}
+scatterplotMatrix(
+  ~ bsim + distance + cs + v + z + a,
+  regLine = TRUE, smooth = TRUE, diagonal = TRUE,
+  data = sim
+)
+
+```
+
+
+
+## Choice of statistical models
+
+
 
