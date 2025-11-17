@@ -77,7 +77,11 @@ test test
 
 ## Corresponding null hypotheses
 
-
+H01:
+H02:
+H03:
+H04:
+H05:
 
 ## A plot visualizing the data adequately + a description of the most important aspects of the plot
 
@@ -87,12 +91,65 @@ scatterplotMatrix(
   regLine = TRUE, smooth = TRUE, diagonal = TRUE,
   data = sim
 )
+```
 
+The relationship between black fly larvae biomass and all other variables does not seem to be strong. There seems to be a linear relationship between current speed and mean size of rock sampled, indicating there might be a problem of multicollinearity between those two independent variables.
+
+## Choice of statistical models
+
+```{r}
+model1 <- lm(bsim ~ distance + cs + v + z + a, data = sim)
+check_model(model1)
 ```
 
 
 
-## Choice of statistical models
+## Statement of the model assumptions and evidence that they were evaluated
 
+```{r}
+shapiro.test(residuals(model1))
+bptest(model1)
+dwtest(model1)
+```
 
+Shapiro-Wilk test shows no evidence of non-normality (p-value = 0.09636) and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. The studentized Breusch-Pagan test, however, shows evidence of heteroscedasticity (p-value = 0.0375). We will do a log transformation on an alternative model:
+
+```{r}
+logbsim <- log(sim$bsim)
+logd <- log(sim$distance)
+logcs <- log(sim$cs)
+logv <- log(sim$v)
+logz <- log(sim$z)
+loga <- log(sim$a)
+model2 <- lm(logbsim ~ logd + logcs + logv + logz + loga, data = sim)
+check_model(model2)
+
+shapiro.test(residuals(model2))
+bptest(model2)
+dwtest(model2)
+```
+
+With the log transformation, the Shapiro-Wilk test indicates normality, the studentized Breusch-Pagan test indicates homoscedasticity, and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. We will proceed with this model.
+
+## Evaluation of interactions
+```{r}
+fullmodel_withinteractions <- lm(logbsim ~ logd * logcs * logv * logz * loga, data = sim)
+summary(fullmodel_withinteractions)
+
+full_model_2ndinteractions <- lm(
+  logbsim ~ logd + logcs + logv + logz + loga
+    + logd:logcs
+    + logd:logv
+    + logd:logz
+    + logd:loga
+    + logcs:logv
+    + logcs:logz
+    + logcs:loga
+    + logv:logz
+    + logv:loga
+    + logz:loga,
+  data = sim
+)
+summary(full_model_2ndinteractions)
+```
 
