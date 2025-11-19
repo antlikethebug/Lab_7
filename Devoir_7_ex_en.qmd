@@ -94,7 +94,7 @@ scatterplotMatrix(
 )
 ```
 
-The relationship between black fly larvae biomass and all other variables does not seem to be strong. There seems to be a linear relationship between current speed and mean size of rock sampled, indicating there might be a problem of multicollinearity between those two independent variables.
+
 
 ## Choice of statistical models
 
