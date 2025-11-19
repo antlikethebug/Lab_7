@@ -69,6 +69,7 @@ library(lmtest)
 library(simpleboot)
 library(boot)
 library(MuMIn)
+library(performance)
 ```
 
 ## Biological predictions for each variable
@@ -112,15 +113,15 @@ bptest(model1)
 dwtest(model1)
 ```
 
-Shapiro-Wilk test shows no evidence of non-normality (p-value = 0.09636) and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. The studentized Breusch-Pagan test, however, shows evidence of heteroscedasticity (p-value = 0.0375). We will do a log transformation on an alternative model:
+Shapiro-Wilk test shows no evidence of non-normality (p-value = 0.09636) and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. The studentized Breusch-Pagan test, however, shows evidence of heteroscedasticity (p-value = 0.0375). The distribution also looks skewed... We will do a log transformation on an alternative model:
 
 ```{r}
-logbsim <- log(sim$bsim)
-logd <- log(sim$distance)
-logcs <- log(sim$cs)
-logv <- log(sim$v)
-logz <- log(sim$z)
-loga <- log(sim$a)
+logbsim <- log10(sim$bsim)
+logd <- log10(sim$distance)
+logcs <- log10(sim$cs)
+logv <- log10(sim$v)
+logz <- log10(sim$z)
+loga <- log10(sim$a)
 model2 <- lm(logbsim ~ logd + logcs + logv + logz + loga, data = sim)
 check_model(model2)
 
@@ -129,7 +130,7 @@ bptest(model2)
 dwtest(model2)
 ```
 
-With the log transformation, the Shapiro-Wilk test indicates normality, the studentized Breusch-Pagan test indicates homoscedasticity, and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. We will proceed with this model.
+With the log transformation, the Shapiro-Wilk test indicates normality, the studentized Breusch-Pagan test indicates homoscedasticity, and the Durbin-Watson test shows no  serial correlation in the residuals, so no evidence of non-independence. The distribution is also better. We will proceed with this model.
 
 ## Evaluation of interactions
 ```{r}
